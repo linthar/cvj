@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>coop.tecso.asociados</groupId>
+		<artifactId>cv</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>cv-web</artifactId>
+	<packaging>war</packaging>
+
+
+	<properties>
+		<spring.version>3.1.0.RELEASE</spring.version>
+		<jackson.version>1.7.4</jackson.version>
+	</properties>
+
+	<build>
+
+		<finalName>cv</finalName>
+
+		<plugins>
+			<!-- Compile custom GWT components or widget dependencies with the GWT 
+				compiler -->
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${gwt.plugin.version}</version>
+				<configuration>
+					<webappDirectory>${project.build.directory}/${project.build.finalName}/VAADIN/widgetsets</webappDirectory>
+					<extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
+					<runTarget>egr-web</runTarget>
+					<hostedWebapp>${project.build.directory}/${project.build.finalName}</hostedWebapp>
+					<noServer>true</noServer>
+					<port>8080</port>
+					<compileReport>false</compileReport>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>resources</goal>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+				
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-dev</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-user</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-maven-plugin</artifactId>
+				<version>1.0.2</version>
+				<executions>
+					<execution>
+						<configuration></configuration>
+						<goals>
+							<goal>update-widgetset</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- Core Dependencies-->
+		<dependency>
+			<groupId>coop.tecso.core.webapp.vaadin</groupId>
+			<artifactId>core-web-vaadin</artifactId>
+			<version>${core-vaadin.version}</version>
+		</dependency>
+
+
+		<!-- Backend Dependencies-->
+		<dependency>
+			<groupId>coop.tecso.asociados</groupId>
+			<artifactId>cv-service</artifactId>
+	                <version>${this.version}</version> 
+		</dependency>
+
+
+		<!-- Rest Dependencies-->
+		<dependency>
+		     <groupId>org.springframework</groupId>
+		     <artifactId>spring-webmvc</artifactId>
+		     <version>${spring.version}</version>
+		</dependency>
+		<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-lgpl</artifactId>
+				<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-lgpl</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>coop.tecso.core.app</groupId>
+			<artifactId>core-test</artifactId>
+			<version>${core.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

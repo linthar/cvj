@@ -1,0 +1,72 @@
+
+<form name="cvForm" id="editCvForm" class="form-horizontal"> 
+
+	<fieldset>
+   		<legend>
+   			<i class="icon-user"></i> 
+   			Personal infomation 
+   			<span class="pull-right"><a href="#"><i class="icon-chevron-left"></i>volver</a></span>
+   		</legend>
+
+<!--
+		<img src="img/profile.jpg" class="img-rounded pull-left img-profile" />
+-->
+		<section style="padding-left:5px">
+	   		<label>Name:</label>
+			<input type="text" ng-model="form.name" class="input-xxlarge" required/>
+			
+	   		<label>Title:</label>
+	   		<input type="text" ng-model="form.title" size="33" class="input-xxlarge" required/>  
+			    
+	   		<label>Summary:</label>
+			<textarea ng-model="form.summary" rows="4" cols="70" class="input-xxlarge"></textarea>
+		</section>
+
+	</fieldset>
+    
+	<fieldset>
+   		<legend><i class="icon-fire"></i>Experience <span class="small-text">[ </span><a href="" ng-click="addExperience()" class="small-text">add</a><span class="small-text"> ]</span> </legend>
+
+	    <div ng-repeat="experience in form.experienceList">
+    		
+    		<div class="well" style="background-color:#FAFAFA; box-shadow:none; padding-top:10px">
+	    		<button  ng-click="removeExperience(experience)" class="close">&times;</button>
+
+	    		<label>Company:</label>
+	    		<input type="text" ng-model="experience.company" class="input-xxlarge" required/>
+	    
+	    		<label>Title:</label>
+	    		<input type="text" ng-model="experience.title" class="input-xxlarge" required/>
+	
+			    <label>From:</label>
+	    		<select ng-model="experience.fromMonth" ng-options="month.id as month.name for month in months" required>
+	    		</select>
+	    		<select ng-model="experience.fromYear" ng-options="year as year for year in years" required>
+	    		</select>
+	
+	    		<label>To:</label>
+	    		<select ng-model="experience.toMonth" ng-options="month.id as month.name for month in months" required>
+	    		</select>
+	    		<select ng-model="experience.toYear" ng-options="year as year for year in years" required>
+	    		</select>
+	
+				<label>Work description:</label>
+	      		<textarea  ng-model="experience.description" rows="4" cols="70" class="input-xxlarge">
+       			</textarea>
+      		</div>
+	    </div>
+  		
+  	</fieldset>
+
+  	<hr>
+ 	<button ng-click="cancel()" ng-disabled="isCancelDisabled()" class="btn btn-large">Cancel</button>	
+  	<button ng-click="save()" ng-disabled="isSaveDisabled()" class="btn btn-primary btn-large">Save</button>
+</form>
+
+
+<hr/>
+
+Debug View:
+<pre>form={{form}}</pre>
+
+

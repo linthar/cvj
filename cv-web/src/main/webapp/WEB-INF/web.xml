@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_9" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>cv</display-name>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:META-INF/*.beans.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jExposeWebAppRoot</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<description>Vaadin production mode</description>
+		<param-name>productionMode</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+	<filter>
+		<filter-name>hibernateSessionFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>sessionFactoryBeanName</param-name>
+			<param-value>sessionFactory</param-value> 
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>hibernateSessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<!-- Log4j:  Environment based log4j configuration -->
+  	<context-param>
+	<param-name>log4jConfigLocation</param-name>
+         <param-value>classpath:conf/${CORE_ENVIRONMENT}/log4j.properties</param-value>  
+  	</context-param>
+  	<context-param>
+	 <param-name>log4jRefreshInterval</param-name>
+	 <param-value>1000</param-value>
+  	</context-param>
+
+	  <listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	  </listener>
+ 
+ 
+	<!-- Spring Security Filter Chains -->
+	    <filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	    </filter>
+
+	    <filter-mapping>
+	      <filter-name>springSecurityFilterChain</filter-name>
+	      <url-pattern>/*</url-pattern>
+	    </filter-mapping>
+
+	
+
+	<!-- VAADIN Servlet  -->
+ 	<servlet>
+		<servlet-name>MainApplication</servlet-name>
+		<servlet-class>coop.tecso.core.web.vaadin.servlet.CustomApplicationServlet</servlet-class>
+        <init-param>
+            <description>Vaadin application class to start</description>
+            <param-name>application</param-name>
+            <param-value>coop.tecso.asociados.cv.web.layout.MainApp</param-value>
+        </init-param>          
+        <init-param>
+            <param-name>widgetset</param-name>
+            <param-value>coop.tecso.asociados.cv.widgetset.Widgetset</param-value>
+        </init-param>
+		<init-param>
+	  	  	<param-name>theme</param-name>
+            <param-value>default-theme</param-value>
+        </init-param>
+        <init-param>
+            <param-name>uriExclutions</param-name>
+            <param-value></param-value>
+        </init-param>
+        <init-param>
+            <param-name>caption</param-name>
+            <param-value>paises</param-value>
+        </init-param>        
+	</servlet>
+		        
+	<servlet>
+        <servlet-name>restDispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                classpath:/META-INF/restDispatcher.xml
+            </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>restDispatcher</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>	 
+		        
+		        
+		        
+	<!-- MAIN APPLICATION -->
+	<servlet-mapping>
+		<servlet-name>MainApplication</servlet-name>
+		<url-pattern>/crud/*</url-pattern>
+	</servlet-mapping>
+	<!-- MAIN APPLICATION -->
+		
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+</web-app>
+ 

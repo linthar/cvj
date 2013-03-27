@@ -1,0 +1,250 @@
+@import "../runo/styles.css";
+
+
+/**
+ * Para extender estilos default de vaadin. El cual el core extiende, recomendamos visitar la 
+ * documentación oficial.
+ 
+ * Esta documentación, expone para cada componente, todas los estilos CSS que pueden ser modificados para cambiar el look and feel de 
+ * cada uno de ellos.
+ *
+ * 
+ * ## Referencia componentes Vaadin
+ * https://vaadin.com/book/-/page/components.html   
+ *
+ * ## Referencia CSS Style names de componentes Vaadin
+ * https://vaadin.com/book/-/page/themes.creating.html#themes.creating.component-styles 
+ *
+ * #### EJEMPLO: si se quisiera modificar los estilos de un Panel
+ * 		(https://vaadin.com/book/-/page/layout.components.panel.html)
+ * 
+ * 		Se deberán sobrescribir los siguientes estilos:
+ *
+ *				.v-panel {}
+ *				.v-panel-caption {}
+ *				.v-panel-nocaption {}
+ *				.v-panel-content {}
+ * 				.v-panel-deco {}
+ *
+ */
+
+
+
+
+/**
+ * General styles
+ */
+.body {
+	font-family: arial;
+}
+
+.title {
+	font-family: arial;
+    font-size: 40px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.big-title {
+	font-family: arial;
+    font-size: 40px;
+    margin-top: 10px;
+    height: 50px;
+    text-align: center;
+}
+
+.small-title {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 10px;
+}
+
+.link, .link:active, .link:focus {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    color: #DDDDDD;
+}
+.v-nativebutton-link {
+	border: 0 !important;
+	background-image: none !important;
+	background-color: transparent !important;
+}
+
+.login-validation {
+	font-weight: bold;
+	color: red;
+}
+
+
+/**
+ * ABM styles
+ */
+.searchResultComponent {
+    background-color: white;
+}
+
+.searchCriteriaLayout {
+	
+}
+
+.pagination {
+    border-top: 15px solid #EEEEEE;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.searchCriteria {
+    margin: auto;
+}
+.v-panel-caption-searchCriteria {
+    border-bottom: 1px dotted #CCCCCC;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    color: #777777;
+}
+
+.collapseFilterButton {
+   left: 45px;
+   position: absolute;
+}
+.collapseFilterButton .v-button-caption {
+    font-size: 35px;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    color: #CCCCCC;
+    transition: color 500ms;
+    -moz-transition: color 500ms;
+    -webkit-transition: color 500ms;
+    -o-transition: color 500ms;
+}
+.collapseFilterButton .v-button-caption:hover {
+    color: black;
+}
+
+/* Header tabla de resultados */
+.v-table-caption-container {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Header de popup de edicion de entidades */
+.v-window-header {
+    color: #222222;
+}
+
+
+
+
+
+/**
+ * Form styles
+ */
+.v-formlayout-captioncell {
+	vertical-align: top;
+}
+ 
+input.v-textfield[type="text"],
+input.v-textfield[type="password"] {
+    color: #777777;
+    font-size: 14px;
+    height: 18px;
+    padding-top: 4px;
+}
+
+.password-custom-field {
+	background-color: #F8F8F8;
+	border-radius: 10px;
+	padding: 10px;
+	padding-top: 5px;
+}
+
+.password-label {
+	font-size: 11px;
+	font-style: italic;
+}
+
+.profile-form .v-caption {
+    width: 80px;
+    white-space: pre-line;
+    overflow: hidden;
+}
+.profile-form .v-button-link {
+    float: right;
+    margin-right: 15px;
+}
+
+/* Buttons */ 
+.saveButton, .delete, .primary, .v-nativebutton {
+    color: #464f52;
+	display: block;
+    line-height: 14px;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 0 #fff;
+    
+    min-height: 14px;
+    border: 1px solid #bdc1c2;
+    background: #e6e8e8 url(images/button-bg.png) repeat-x;
+    padding: 3px 15px;
+
+	-webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+    -moz-box-shadow: 0 1px 0 rgba(0,0,0,.15);
+    overflow: hidden;
+}
+.saveButton:focus, .delete:focus, .primary:focus, .v-nativebutton:focus {
+    outline: none;
+    border-color: #57a7ed;
+    -webkit-box-shadow: 0 0 2px #57a7ed;
+    -moz-box-shadow:  0 0 2px #57a7ed;
+}  
+.saveButton:active, .delete:active, .primary:active, .v-nativebutton:active {
+    background-position: 0 -79px;
+    background-color: #e7e9e9;
+    border-color: #b8bdbe;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.4) inset;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.4) inset;;
+    text-shadow: none;
+}
+.saveButton:hover, .delete:hover, .primary:hover, .v-nativebutton:hover {
+    border: 1px solid #4D90FE; 
+}
+
+
+
+/**
+ * Menu styles
+ */
+.v-menubar-menu {
+	/*
+    background: -moz-linear-gradient(#6FACD5, #497BAE) repeat scroll 0 0 #5E87B0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#6FACD5), to(#497BAE));
+	*/
+    background: -moz-linear-gradient(#666666, #222222) repeat scroll 0 0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#222222));
+	
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 -1px 1px #000000;
+    color: #FFFFFF;
+}
+.v-menubar-menuitem-caption:hover {
+	color: #DDDDDD; 
+}
+.v-menubar-menu .v-menubar-menuitem {
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 0.6em 20px;
+	border: 0px;
+    min-width: 0.75em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+	float: left;
+}
+

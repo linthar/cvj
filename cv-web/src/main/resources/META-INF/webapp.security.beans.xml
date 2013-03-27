@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <security:http security="none" pattern="/VAADIN/**"/>
+    <security:http security="none" pattern="/rest/**"/>
+    <security:http security="none" pattern="/cv/**"/>
+
+    <security:http auto-config="true">
+        <!-- access-denied-page="jsp/accessDenied.jsp"> -->
+                <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+                              <!-- si se desea seguridad: IS_AUTHENTICATED_REMEMBERED -->
+        <security:form-login login-page='/login' authentication-failure-url="/login" />
+        <security:logout invalidate-session="true" />
+    </security:http>
+
+
+ 
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider user-service-ref="userDetailsService">
+            <security:password-encoder hash="md5" />
+        </security:authentication-provider>
+    </security:authentication-manager>
+ 
+        
+</beans>
